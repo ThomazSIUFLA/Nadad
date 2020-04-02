@@ -1,6 +1,7 @@
 <?php
-    session_start();
+include "servicos/mensagemSessao.php";
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +16,18 @@
 <p>FORMULÁRIO PARA INSCRIÇÃO DE COMPETIDORES</p>
 <form action="script.php" method="post">
     <?php
-        $mensErro = isset($_SESSION['mensagem-de-erro']) ? $_SESSION['mensagem-de-erro'] : '';
+        $mensSucess = obterMensagemSucesso();
+        if(!empty($mensSucess)){
+            echo $mensSucess;
+        }
+        $mensErro = obterMensagemErro();
         if(!empty($mensErro)){
             echo $mensErro;
         }
     ?>
-    <p>seu nome:<input type="text" name="nome"></p>
-    <p>sua idade:<input type="text" name="idade"></p>
-    <p><input type="submit" value="Enviar dados"></p>
+    <p>seu nome:<input type="text" name="nome"/></p>
+    <p>sua idade:<input type="text" name="idade"/></p>
+    <p><input type="submit" value="Enviar dados"/></p>
 </form>
 </body>
 
